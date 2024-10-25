@@ -18,6 +18,7 @@ class DirectoryTableViewController: UITableViewController {
         if currentDirectoryUrl == nil {
             currentDirectoryUrl = URL(fileURLWithPath: NSHomeDirectory())
         }
+        setupMenu()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +54,52 @@ class DirectoryTableViewController: UITableViewController {
             }
         }
         return true
+    }
+    
+    func setupMenu() {
+        menuButton.menu = UIMenu(children: [
+            UIAction(title: "새 디렉토리",image: UIImage(systemName: "folder"), handler: { _ in
+                self.showNameInputAlert()
+            }),
+            UIAction(title: "새 텍스트 파일",image: UIImage(systemName: "doc.text"), handler: { _ in
+                
+            }),
+            UIAction(title: "새 이미지 파일",image: UIImage(systemName: "photo"), handler: { _ in
+                
+            }),
+        ])
+    }
+    
+    func showNameInputAlert() {
+        let inputAlert  = UIAlertController(title: "새 디렉토리", message: nil, preferredStyle: .alert)
+        inputAlert.addTextField { nameField in
+            nameField.placeholder = "디렉토리 명을 입력해주세요."
+            nameField.clearButtonMode = .whileEditing
+            nameField.autocapitalizationType = .none
+            nameField.autocorrectionType = .no
+        }
+        let createAction = UIAlertAction(title: "추가", style: .default) { _ in
+            if let name = inputAlert.textFields?.first?.text {
+                self.addDirectory(named: name)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        inputAlert.addAction(createAction)
+        inputAlert.addAction(cancelAction)
+        present(inputAlert, animated: true)
+        
+    }
+    
+    func addDirectory(named: String) {
+        // appendingPathComponent: URL 마지막에 새로운 경로를 추가해서 리턴
+        guard let url = currentDirectoryUrl?.appendingPathComponent(named, isDirectory: true) else { return }
+        
+        do {
+            try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil )
+        } catch {
+            print(error)
+        }
+        refreshContents()
     }
     
     func updateNavigationTitle(){
