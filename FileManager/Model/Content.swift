@@ -8,6 +8,13 @@
 import Foundation
 import UIKit
 
+fileprivate var formatter: ByteCountFormatter  = {
+    let f = ByteCountFormatter()
+    f.isAdaptive = true // 값의 크기에 따라 적절한 단위로 변경
+    f.includesUnit = true
+    return f
+}()
+
 struct Content {
     let url: URL
     var name: String {
@@ -18,6 +25,10 @@ struct Content {
         let values = try? url.resourceValues(forKeys: [.fileSizeKey])
         return values?.fileSize ?? 0
     }
+    var sizeString: String? {
+        return formatter.string(for: size)
+    }
+    
     var type: Type {
         let values = try? url.resourceValues(forKeys: [.isDirectoryKey])
         return values?.isDirectory == true ? .directory : .file
