@@ -40,6 +40,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="zXa-Ht-ri9" kind="show" identifier="directorySegue" id="PUX-4u-sLG"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

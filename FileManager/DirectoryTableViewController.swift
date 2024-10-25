@@ -26,10 +26,38 @@ class DirectoryTableViewController: UITableViewController {
         updateNavigationTitle()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
+            if let vc = segue.destination as? DirectoryTableViewController {
+                vc.currentDirectoryUrl = contents[indexPath.row].url
+            }
+        }
+    }
+    
+    // true를 반환하면 segue 실행
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "directorySegue" {
+            if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
+                
+                do {
+                    let url = contents[indexPath.row].url
+                    let reachable = try url.checkResourceIsReachable() // url에 파일이나 디렉토리가 있는지 확인
+                    if !reachable {
+                        return false
+                    }
+                } catch {
+                    print(error)
+                    return false
+                }
+                return contents[indexPath.row].type == .directory
+            }
+        }
+        return true
+    }
+    
     func updateNavigationTitle(){
-        
         guard let url = currentDirectoryUrl else {
-            self.navigationItem.title = "???"
+            self.navigationItem.title = "?"
             return
         }
         
@@ -65,6 +93,16 @@ class DirectoryTableViewController: UITableViewController {
             
         } catch {
             print(error)
+        }
+        
+        if contents.isEmpty {
+            let label = UILabel()
+            label.text = "빈 디렉토리"
+            label.textAlignment = .center
+            label.textColor = .secondaryLabel
+            tableView.backgroundView = label
+        } else {
+            tableView.backgroundView = nil
         }
     }
     
@@ -133,15 +171,4 @@ class DirectoryTableViewController: UITableViewController {
      return true
      }
      */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
