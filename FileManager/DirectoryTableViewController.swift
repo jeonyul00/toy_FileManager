@@ -38,9 +38,11 @@ class DirectoryTableViewController: UITableViewController {
             if let vc = segue.destination.children.first as? TextViewController {
                 vc.url = sender as? URL
             }
+        } else if segue.identifier == "imageSegue" {
+            if let vc = segue.destination.children.first as? ImageViewController {
+                vc.url = sender as? URL
+            }
         }
-        
-        
     }
     
     // true를 반환하면 segue 실행
@@ -229,6 +231,8 @@ class DirectoryTableViewController: UITableViewController {
         switch target.url.pathExtension {
         case "txt":
             performSegue(withIdentifier: "textSegue", sender: target.url)
+        case "jpg", "png":
+            performSegue(withIdentifier: "imageSegue", sender: target.url)
         default:
             break
         }
