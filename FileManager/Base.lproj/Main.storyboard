@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -55,11 +56,58 @@
                     </navigationItem>
                     <connections>
                         <outlet property="menuButton" destination="2wl-yL-FCD" id="dXH-dH-5b5"/>
+                        <segue destination="Dbs-NG-UC9" kind="presentation" identifier="textSegue" id="uKA-Ve-ZLF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAc-NS-cUR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="908" y="-343"/>
+        </scene>
+        <!--파일 보기-->
+        <scene sceneID="p1o-8d-2Dr">
+            <objects>
+                <viewController id="yTn-f7-32M" customClass="TextViewController" customModule="FileManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tvw-56-JdX">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="g1B-oh-Sel">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="4Cc-tL-buo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="g1B-oh-Sel" firstAttribute="bottom" secondItem="4Cc-tL-buo" secondAttribute="bottom" id="2sn-jK-WBP"/>
+                            <constraint firstItem="g1B-oh-Sel" firstAttribute="leading" secondItem="4Cc-tL-buo" secondAttribute="leading" id="MPe-rN-tm3"/>
+                            <constraint firstItem="g1B-oh-Sel" firstAttribute="top" secondItem="Tvw-56-JdX" secondAttribute="top" id="hpn-6K-FNh"/>
+                            <constraint firstItem="g1B-oh-Sel" firstAttribute="trailing" secondItem="4Cc-tL-buo" secondAttribute="trailing" id="i7S-2U-QGN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="파일 보기" id="foC-pC-Je8">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="mwX-hz-RJX">
+                            <connections>
+                                <action selector="closeVC:" destination="yTn-f7-32M" id="eu3-8P-jmH"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="yse-cR-FdB">
+                            <connections>
+                                <action selector="share:" destination="yTn-f7-32M" id="Z7q-bv-r21"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentTextView" destination="g1B-oh-Sel" id="3Xn-00-gto"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1g5-r6-YRd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="908" y="392"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hj3-Gh-knw">
@@ -77,8 +125,29 @@
             </objects>
             <point key="canvasLocation" x="3" y="-343"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="sOK-2d-RFX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dbs-NG-UC9" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uFu-01-aq3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yTn-f7-32M" kind="relationship" relationship="rootViewController" id="4BX-kj-Wpv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bmw-k4-0QS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2" y="392"/>
+        </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
