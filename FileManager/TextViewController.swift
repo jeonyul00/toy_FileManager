@@ -22,6 +22,7 @@ class TextViewController: UIViewController {
     
     @IBAction func share(_ sender: Any) {
         guard let contentTextViewText = contentTextView.text else { return }
+                
         let dataToShare = contentTextViewText
         // 데이터 공유
         let activityViewController = UIActivityViewController(activityItems: [dataToShare], applicationActivities: nil)

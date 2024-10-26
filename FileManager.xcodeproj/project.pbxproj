@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AB5055E12CCD1283009B69D6 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5055E02CCD1283009B69D6 /* TextViewController.swift */; };
 		AB5055E32CCD1778009B69D6 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5055E22CCD1778009B69D6 /* ImageViewController.swift */; };
+		AB5055E52CCD1996009B69D6 /* ImageActivityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5055E42CCD1996009B69D6 /* ImageActivityItem.swift */; };
 		AB94E5EE2CCB483F00B11B8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB94E5ED2CCB483F00B11B8E /* AppDelegate.swift */; };
 		AB94E5F02CCB483F00B11B8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB94E5EF2CCB483F00B11B8E /* SceneDelegate.swift */; };
 		AB94E5F52CCB483F00B11B8E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AB94E5F42CCB483F00B11B8E /* Base */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		AB5055E02CCD1283009B69D6 /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		AB5055E22CCD1778009B69D6 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		AB5055E42CCD1996009B69D6 /* ImageActivityItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageActivityItem.swift; sourceTree = "<group>"; };
 		AB94E5EA2CCB483F00B11B8E /* FileManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB94E5ED2CCB483F00B11B8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB94E5EF2CCB483F00B11B8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			children = (
 				AB94E6042CCB4A8800B11B8E /* Type.swift */,
 				AB94E6062CCB4AB600B11B8E /* Content.swift */,
+				AB5055E42CCD1996009B69D6 /* ImageActivityItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB94E5EE2CCB483F00B11B8E /* AppDelegate.swift in Sources */,
+				AB5055E52CCD1996009B69D6 /* ImageActivityItem.swift in Sources */,
 				AB94E6022CCB49F400B11B8E /* DirectoryTableViewController.swift in Sources */,
 				AB94E5F02CCB483F00B11B8E /* SceneDelegate.swift in Sources */,
 				AB5055E32CCD1778009B69D6 /* ImageViewController.swift in Sources */,

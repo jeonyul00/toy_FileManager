@@ -22,8 +22,9 @@ class ImageViewController: UIViewController {
     
     @IBAction func share(_ sender: Any) {
         guard let image = imageView.image else { return }
+        let item = ImageActivityItem(image: image, title: "img title", subTitle: navigationItem.title)
         // 데이터 공유
-        let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [item], applicationActivities: nil)
         self.present(activityViewController, animated: true)
     }
         
