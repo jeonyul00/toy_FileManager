@@ -66,6 +66,16 @@ class DirectoryTableViewController: UITableViewController {
         return true
     }
     
+    func removeItem(at url:URL) -> Bool {
+        do {
+            try FileManager.default.removeItem(at: url)
+            return true
+        } catch {
+            print(error)
+        }
+        return false
+    }
+    
     func setupMenu() {
         menuButton.menu = UIMenu(children: [
             UIAction(title: "새 디렉토리",image: UIImage(systemName: "folder"), handler: { _ in
@@ -236,5 +246,18 @@ class DirectoryTableViewController: UITableViewController {
         default:
             break
         }
+    }
+    
+    // 편집 기능 활성화, 삭제 버튼 탭하면 호출
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            let target = contents[indexPath.row]
+            if removeItem(at: target.url) {
+                contents.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        }
+        
     }
 }
