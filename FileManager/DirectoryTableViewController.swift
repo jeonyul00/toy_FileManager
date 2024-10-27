@@ -315,7 +315,6 @@ class DirectoryTableViewController: UITableViewController {
             completion(true)
         }
         
-        
         if target.isExcludedFromBackup {
             backupAction.image = UIImage(systemName: "icloud.and.arrow.up")
         } else {
@@ -326,5 +325,34 @@ class DirectoryTableViewController: UITableViewController {
         return configuration
     }
     
+    // 컨텍스트 메뉴 활성화
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        var children = [UIAction]()
+        
+        let renameAction = UIAction(title: "이름 변경",image: UIImage(systemName: "square.and.pencil")) { _ in
+            self.showRenameAlert(at: indexPath.row)
+        }
+        children.append(renameAction)
+        
+        let target = contents[indexPath.row]
+        
+        if target.isExcludedFromBackup {
+            let includeAction = UIAction(title: "백업 대상에 추가", image: UIImage(systemName: "icloud.and.arrow.up")) { _ in
+                target.toggleBackupflag()
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+            children.append(includeAction)
+        } else {
+            let excludeAction = UIAction(title: "백업 대상에서 제외",image: UIImage(systemName: "icloud.slash")) { _ in
+                target.toggleBackupflag()
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+            children.append(excludeAction)
+        }
+                
+        return UIContextMenuConfiguration(actionProvider: { elements in
+            UIMenu(children: children)
+        })
+    }
     
 }
