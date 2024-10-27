@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB3610922CCE1B1800331A07 /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3610912CCE1B1800331A07 /* ImagePreviewViewController.swift */; };
 		AB5055E12CCD1283009B69D6 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5055E02CCD1283009B69D6 /* TextViewController.swift */; };
 		AB5055E32CCD1778009B69D6 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5055E22CCD1778009B69D6 /* ImageViewController.swift */; };
 		AB5055E52CCD1996009B69D6 /* ImageActivityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5055E42CCD1996009B69D6 /* ImageActivityItem.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB3610912CCE1B1800331A07 /* ImagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewViewController.swift; sourceTree = "<group>"; };
 		AB5055E02CCD1283009B69D6 /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		AB5055E22CCD1778009B69D6 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		AB5055E42CCD1996009B69D6 /* ImageActivityItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageActivityItem.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				AB94E5F82CCB484000B11B8E /* LaunchScreen.storyboard */,
 				AB94E5FB2CCB484000B11B8E /* Info.plist */,
 				AB5055E22CCD1778009B69D6 /* ImageViewController.swift */,
+				AB3610912CCE1B1800331A07 /* ImagePreviewViewController.swift */,
 			);
 			path = FileManager;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB94E5EE2CCB483F00B11B8E /* AppDelegate.swift in Sources */,
+				AB3610922CCE1B1800331A07 /* ImagePreviewViewController.swift in Sources */,
 				AB5055E52CCD1996009B69D6 /* ImageActivityItem.swift in Sources */,
 				AB94E6022CCB49F400B11B8E /* DirectoryTableViewController.swift in Sources */,
 				AB94E5F02CCB483F00B11B8E /* SceneDelegate.swift in Sources */,

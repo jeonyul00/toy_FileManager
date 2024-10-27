@@ -113,7 +113,7 @@ class DirectoryTableViewController: UITableViewController {
         present(inputAlert, animated: true)
         
     }
-
+    
     
     func setupMenu() {
         menuButton.menu = UIMenu(children: [
@@ -349,10 +349,23 @@ class DirectoryTableViewController: UITableViewController {
             }
             children.append(excludeAction)
         }
-                
-        return UIContextMenuConfiguration(actionProvider: { elements in
-            UIMenu(children: children)
-        })
+        let isImage = target.url.pathExtension == "jpg" || target.url.pathExtension == "png"
+        if target.type == .file && isImage {
+            return UIContextMenuConfiguration {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                guard let vc = storyboard.instantiateViewController(withIdentifier: String(describing: ImagePreviewViewController.self)) as? ImagePreviewViewController else { return nil }
+                if let data = try? Data(contentsOf: target.url) {
+                    vc.image = UIImage(data: data)
+                }
+                return vc
+            } actionProvider: { elements in
+                UIMenu(children: children)
+            }
+        } else {
+            return UIContextMenuConfiguration(actionProvider: { elements in
+                UIMenu(children: children)
+            })
+        }
     }
     
 }

@@ -151,6 +151,35 @@
             </objects>
             <point key="canvasLocation" x="2692.3664122137402" y="391.54929577464793"/>
         </scene>
+        <!--Image Preview View Controller-->
+        <scene sceneID="Osp-B9-kE7">
+            <objects>
+                <viewController storyboardIdentifier="ImagePreviewViewController" id="t4F-PU-1u6" customClass="ImagePreviewViewController" customModule="FileManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t4D-WS-DGQ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rrH-1r-P4N">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rrz-90-3vf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rrH-1r-P4N" firstAttribute="leading" secondItem="rrz-90-3vf" secondAttribute="leading" id="2sC-Gs-2B9"/>
+                            <constraint firstAttribute="bottom" secondItem="rrH-1r-P4N" secondAttribute="bottom" id="SzI-Cu-Nxy"/>
+                            <constraint firstItem="rrH-1r-P4N" firstAttribute="top" secondItem="t4D-WS-DGQ" secondAttribute="top" id="bb4-ak-zlA"/>
+                            <constraint firstItem="rrz-90-3vf" firstAttribute="trailing" secondItem="rrH-1r-P4N" secondAttribute="trailing" id="umf-61-EvH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="rrH-1r-P4N" id="vRg-qf-9hl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oua-8T-Ifc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3596" y="392"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hj3-Gh-knw">
             <objects>
