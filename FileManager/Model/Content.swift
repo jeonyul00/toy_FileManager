@@ -37,6 +37,18 @@ struct Content {
         let values = try? url.resourceValues(forKeys: [.isExcludedFromBackupKey])
         return values?.isExcludedFromBackup ?? false
     }
+    
+    func toggleBackupflag() {
+        do {
+            let currentFlag = isExcludedFromBackup
+            var targetUrl = url
+            var values = try targetUrl.resourceValues(forKeys: [.isExcludedFromBackupKey])
+            values.isExcludedFromBackup = !currentFlag
+            try targetUrl.setResourceValues(values)
+        } catch {
+            print(error)
+        }
+    }
     var image: UIImage? {
         switch type {
         case .directory:
