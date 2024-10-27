@@ -76,6 +76,45 @@ class DirectoryTableViewController: UITableViewController {
         return false
     }
     
+    func renameItem(at index:Int, to title: String){
+        do {
+            let target = contents[index]
+            switch target.type {
+            case .directory:
+                let toUrl = target.url.deletingLastPathComponent().appendingPathComponent(title)
+                try FileManager.default.moveItem(at: target.url, to: toUrl)
+            case .file:
+                let ext = target.url.pathExtension
+                let toUrl = target.url.deletingLastPathComponent().appendingPathComponent(title).appendingPathExtension(ext)
+                try FileManager.default.moveItem(at: target.url, to: toUrl)
+            }
+            refreshContents()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func showRenameAlert(at index:Int) {
+        let inputAlert  = UIAlertController(title: "이름 변경", message: nil, preferredStyle: .alert)
+        inputAlert.addTextField { nameField in
+            nameField.placeholder = "이름을 명을 입력해주세요."
+            nameField.clearButtonMode = .whileEditing
+            nameField.autocapitalizationType = .none
+            nameField.autocorrectionType = .no
+        }
+        let createAction = UIAlertAction(title: "확인", style: .default) { _ in
+            if let name = inputAlert.textFields?.first?.text {
+                self.renameItem(at: index, to: name)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        inputAlert.addAction(createAction)
+        inputAlert.addAction(cancelAction)
+        present(inputAlert, animated: true)
+        
+    }
+
+    
     func setupMenu() {
         menuButton.menu = UIMenu(children: [
             UIAction(title: "새 디렉토리",image: UIImage(systemName: "folder"), handler: { _ in
@@ -250,7 +289,6 @@ class DirectoryTableViewController: UITableViewController {
     
     // 편집 기능 활성화, 삭제 버튼 탭하면 호출
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         if editingStyle == .delete {
             let target = contents[indexPath.row]
             if removeItem(at: target.url) {
@@ -258,6 +296,17 @@ class DirectoryTableViewController: UITableViewController {
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
         }
-        
+    }
+    
+    // 스와이프 액션 (왼쪽)
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let renameAction = UIContextualAction(style: .normal, title: "이름 변경") { action, view, completion in
+            self.showRenameAlert(at: indexPath.row)
+            completion(true)
+        }
+        renameAction.backgroundColor = .systemBlue
+        renameAction.image = UIImage(systemName: "square.and.pencil")
+        let configuration = UISwipeActionsConfiguration(actions: [renameAction])
+        return configuration
     }
 }
